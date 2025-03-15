@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Application.DTO.PersonDTO>
+
+@{
+    ViewData["Title"] = "Lista osób";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model != null)
+    {
+        foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.FirstName</td>
+                <td>@person.LastName</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

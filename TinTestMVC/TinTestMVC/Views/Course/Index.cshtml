@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Wszystkie kursy";
+}
+
+<div class="courses-wrapper">
+    @foreach (var course in Model.Items)
+    {
+        <div class="course-card">
+            <h2 class="course-title">@course.Title</h2>
+            <p class="course-description">@course.Description</p>
+
+            <div class="course-actions">
+                <a asp-controller="Course"
+                   asp-action="Details"
+                   asp-route-id="@course.Id"
+                   class="course-button">
+                    Zobacz więcej
+                </a>
+
+                <a asp-controller="Enrollment"
+                   asp-action="Register"
+                   asp-route-courseId="@course.Id"
+                   class="course-button enroll-button">
+                    Zapisz się
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="pagination">
+    <span>Strona @Model.PageNumber z @Model.TotalPages</span>
+    
+    @if (Model.PageNumber > 1)
+    {
+        <a asp-action="Index" 
+           asp-route-pageNumber="@(Model.PageNumber - 1)" 
+           asp-route-pageSize="@Model.PageSize">
+            Poprzednia
+        </a> 
+    }
+
+    @if (Model.PageNumber < Model.TotalPages)
+    {
+        <a asp-action="Index" 
+           asp-route-pageNumber="@(Model.PageNumber + 1)" 
+           asp-route-pageSize="@Model.PageSize">
+            Następna
+        </a>
+    }
+</div>

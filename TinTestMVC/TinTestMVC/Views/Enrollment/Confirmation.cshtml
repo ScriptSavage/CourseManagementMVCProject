@@ -1,0 +1,18 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Potwierdzenie zapisu";
+}
+
+<div class="enrollment-container">
+    <h1 class="enrollment-title">Gratulacje!</h1>
+    <p>Zostałeś pomyślnie zapisany na kurs.</p>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="enrollment-success">
+            @TempData["Success"]
+        </div>
+    }
+    <a href="/" class="enrollment-return">Powrót na stronę główną</a>
+</div>

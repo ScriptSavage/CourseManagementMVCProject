@@ -1,0 +1,31 @@
+﻿@model Application.DTO.LoginViewModel
+@{
+    ViewData["Title"] = "Logowanie";
+}
+
+<div class="auth-container">
+    <h2 class="auth-title">Zaloguj się</h2>
+
+    <div asp-validation-summary="All" class="auth-validation-summary"></div>
+
+    <form method="post" asp-action="Login" asp-controller="Account" class="auth-form">
+        <div class="auth-input-group">
+            <label asp-for="Email" class="auth-label"></label>
+            <input asp-for="Email" class="auth-input" />
+            <span asp-validation-for="Email" class="auth-validation-error"></span>
+        </div>
+
+        <div class="auth-input-group">
+            <label asp-for="Password" class="auth-label"></label>
+            <input asp-for="Password" class="auth-input" type="password" />
+            <span asp-validation-for="Password" class="auth-validation-error"></span>
+        </div>
+
+        <div class="auth-rememberme-group">
+            <input asp-for="RememberMe" class="auth-checkbox" />
+            <label asp-for="RememberMe" class="auth-checkbox-label">Pamiętaj mnie</label>
+        </div>
+
+        <button type="submit" class="auth-button">Zaloguj</button>
+    </form>
+</div>

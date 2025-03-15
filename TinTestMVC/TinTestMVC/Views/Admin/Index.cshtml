@@ -1,0 +1,37 @@
+﻿@model List<Application.DTO.CourseDetailsDto>
+@{
+    ViewData["Title"] = "Panel Administratora";
+}
+
+<div class="admin-panel">
+    <h1 class="admin-title">Panel Administratora</h1>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert success">
+            @TempData["Success"]
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert error">
+            @TempData["Error"]
+        </div>
+    }
+
+    <div class="admin-actions">
+        <a asp-controller="Admin" asp-action="AddCourse" class="admin-button">
+            Dodaj nowy kurs
+        </a>
+        <a asp-controller="Admin" asp-action="AddTutor" class="admin-button">
+            Dodaj nauczyciela
+        </a>
+        <a asp-controller="Admin" asp-action="EditCourseSelect" class="admin-button">
+            Edytuj kurs
+        </a>
+        <a asp-controller="Admin" asp-action="DeleteCourseSelect" class="admin-button">
+            Usuń kurs
+        </a>
+    </div>
+</div>

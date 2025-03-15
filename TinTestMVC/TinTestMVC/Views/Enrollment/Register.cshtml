@@ -1,0 +1,36 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Zapisy na kurs";
+    var courseId = ViewBag.CourseId;
+    var courseName = ViewBag.CourseName;
+}
+
+@section Scripts {
+    <script src="~/js/validation.js"></script>
+}
+
+<div class="enrollment-container">
+    <h1 class="enrollment-title">Zapisy na kurs</h1>
+
+    <p>
+        Czy chcesz zapisać się na kurs: 
+        <strong>@courseName</strong>?
+    </p>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="enrollment-error">
+            @TempData["Error"]
+        </div>
+    }
+
+    <form asp-action="RegisterFourCourse" 
+          asp-controller="Enrollment" 
+          method="post" 
+          class="enrollment-form">
+        <input type="hidden" name="courseId" value="@courseId" />
+        <button type="submit" class="enrollment-button">
+            Zapisz się
+        </button>
+    </form>
+</div>

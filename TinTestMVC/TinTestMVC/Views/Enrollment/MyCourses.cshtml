@@ -1,0 +1,29 @@
+@model System.Collections.Generic.List<Application.DTO.CourseDetailsDto>
+
+@{
+    ViewData["Title"] = "Moje kursy";
+}
+
+<div class="my-courses-wrapper">
+    <h2 class="my-courses-title">Moje kursy</h2>
+
+    @if (Model == null || !Model.Any())
+    {
+        <p>Nie jesteś zapisany na żaden kurs.</p>
+    }
+    else
+    {
+        <div class="courses-list">
+            @foreach (var course in Model)
+            {
+                <div class="course-card">
+                    <h3 class="course-title">@course.Title</h3>
+                    <p class="course-description">@course.Description</p>
+                    <p><strong>Data rozpoczęcia:</strong> @course.StartDate.ToString("yyyy-MM-dd")</p>
+                    <p><strong>Data zakończenia:</strong> @course.EndDate.ToString("yyyy-MM-dd")</p>
+                    <p><strong>Cena</strong> @course.Price</p>
+                </div>
+            }
+        </div>
+    }
+</div>

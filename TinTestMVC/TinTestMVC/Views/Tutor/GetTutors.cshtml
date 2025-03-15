@@ -1,0 +1,20 @@
+﻿@model List<Application.DTO.TutorDTO>
+
+@{
+    ViewData["Title"] = "Nasi Prowadzący";
+}
+<div class="tutors-container">
+    <h1 class="tutors-title">Nasi Prowadzący</h1>
+
+    <div class="tutors-grid">
+        @foreach (var tutor in Model)
+        {
+            <div class="tutor-card">
+                <h2 class="tutor-name">@tutor.FirstName @tutor.LastName</h2>
+                <h3 class="tutor-specialization">Specjalizacja: @tutor.Specialisation</h3>
+                <p class="tutor-about">@tutor.AboutMe</p>
+            </div>
+        }
+    </div>
+</div>
+

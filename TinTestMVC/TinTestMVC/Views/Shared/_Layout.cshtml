@@ -1,0 +1,89 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Kursy</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="main-navbar">
+            <div class="nav-left">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="Index">Strona główna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Course" asp-action="Index">Lista kursów</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Tutor" asp-action="GetTutors">Nasi Prowadzący</a>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                           {
+                               <li><a asp-controller="Enrollment" asp-action="MyCourses">Moje kursy</a></li>
+                           }
+
+                    <!-- Tylko dla Admina -->
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Admin" asp-action="Index">Dla Admina</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-list">
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        var firstName = User.FindFirstValue("FirstName");
+                        <li class="nav-item welcome-message">
+                        </li>
+                        <li class="nav-item">
+                            <form asp-controller="Account" asp-action="Logout" method="post" class="logout-form">
+                                <button type="submit" class="logout-button">
+                                    Wyloguj się
+                                </button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Register">Zarejestruj się</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Login">Zaloguj się</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="contact-section">
+                <div class="contact-container">
+                    <p>
+                        Masz pytania? Napisz do nas: 
+                        <a href="mailto:example@gmail.com">contact@example.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/js/validation.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

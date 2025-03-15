@@ -1,0 +1,47 @@
+﻿@model Application.DTO.CourseDetailsDto
+
+@{
+    ViewData["Title"] = "Szczegóły kursu";
+}
+
+<div class="course-details">
+    <h2 class="course-title">@Model.Title</h2>
+
+    <p class="course-info">
+        <strong>Opis:</strong> @Model.Description
+    </p>
+
+    <p class="course-info">
+        <strong>Cena:</strong> @Model.Price
+    </p>
+
+    <p class="course-info">
+        <strong>Data rozpoczęcia:</strong> @Model.StartDate.ToString("dd-MM-yyyy")
+    </p>
+
+    <p class="course-info">
+        <strong>Prowadzący:</strong> @Model.Tutor?.FirstName @Model.Tutor?.LastName
+    </p>
+
+    <p class="course-info">
+        <strong>Liczba zapisanych osób:</strong> @Model.Persons?.Count()
+    </p>
+     <p class="course-info">
+            <strong>Liczba osób które mogą zapisać się na kurs</strong> @Model.MaxNumberOfStudents
+        </p>
+
+    @if (Model.Persons != null && Model.Persons.Any())
+    {
+        <p class="course-info"><strong>Uczestnicy:</strong></p>
+        <ul class="participant-list">
+            @foreach (var person in Model.Persons)
+            {
+                <li>@person.FirstName @person.LastName</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p class="course-info"><em>Brak zapisanych osób.</em></p>
+    }
+</div>

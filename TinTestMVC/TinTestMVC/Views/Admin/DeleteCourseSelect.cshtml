@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Application.DTO.CourseDetailsDto>
+
+@{
+    ViewData["Title"] = "Wybierz kurs do usunięcia";
+}
+
+<div class="form-container">
+    <h2 class="form-title">Wybierz kurs do usunięcia</h2>
+
+    <form asp-action="DeleteCourse" method="post" class="admin-form">
+        <div class="form-group">
+            <label for="id" class="form-label">Kurs</label>
+            <select name="id" class="form-input" required>
+                <option value="">-- Wybierz kurs --</option>
+                @foreach (var course in Model)
+                {
+                    <option value="@course.Id">@course.Title</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="form-button delete-button">Usuń</button>
+    </form>
+</div>
